@@ -1,19 +1,34 @@
-#include <raylib.h>
+#include "raylib.h"
 
 int main(void) {
-  int screenWidth = 800;
-  int screenHeight = 450;
 
-  InitWindow(screenWidth, screenHeight, "basic window");
+  constexpr int screenWidth{800};
+  constexpr int screenHeight{450};
 
-  SetTargetFPS(30);
+  InitWindow(screenWidth, screenHeight, "Keyboard input test.");
+
+  Vector2 ballPosition = {(float)screenWidth / 2, (float)screenHeight / 2};
+
+  SetTargetFPS(80);
 
   while (!WindowShouldClose()) {
+
+    if (IsKeyDown(KEY_D))
+      ballPosition.x += 2.0f;
+    if (IsKeyDown(KEY_A))
+      ballPosition.x -= 2.0f;
+    if (IsKeyDown(KEY_W))
+      ballPosition.y -= 2.0f;
+    if (IsKeyDown(KEY_S))
+      ballPosition.y += 2.0f;
+
     BeginDrawing();
 
     ClearBackground(BLACK);
 
-    DrawText("Random Text Messages.", 190, 200, 20, WHITE);
+    DrawText("Press WASD to move the ball.", 10, 10, 20, WHITE);
+
+    DrawCircleV(ballPosition, 50, RED);
 
     EndDrawing();
   }
