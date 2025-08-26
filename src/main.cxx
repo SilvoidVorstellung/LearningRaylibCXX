@@ -34,6 +34,23 @@ int main(void) {
       }
     }
 
+    ball2Position = GetMousePosition();
+
+    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+      ball2Color = MAROON;
+    else if (IsMouseButtonPressed(MOUSE_BUTTON_RIGHT))
+      ball2Color = LIME;
+    else if (IsMouseButtonPressed(MOUSE_BUTTON_MIDDLE))
+      ball2Color = DARKBLUE;
+    else if (IsMouseButtonPressed(MOUSE_BUTTON_SIDE))
+      ball2Color = PURPLE;
+    else if (IsMouseButtonPressed(MOUSE_BUTTON_EXTRA))
+      ball2Color = YELLOW;
+    else if (IsMouseButtonPressed(MOUSE_BUTTON_FORWARD))
+      ball2Color = ORANGE;
+    else if (IsMouseButtonPressed(MOUSE_BUTTON_BACK))
+      ball2Color = BEIGE;
+
     BeginDrawing();
 
     ClearBackground(BLACK);
@@ -42,7 +59,7 @@ int main(void) {
     DrawText("Move the mouse the move the blue ball.", 10, 30, 20, WHITE);
 
     DrawCircleV(ballPosition, 50, ballColor);
-    DrawCircleV(GetMousePosition(), 30, ball2Color);
+    DrawCircleV(ball2Position, 30, ball2Color);
 
     EndDrawing();
   }
