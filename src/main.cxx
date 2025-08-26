@@ -13,6 +13,11 @@ int main(void) {
   Color ballColor = RED;
   Color ball2Color = DARKBLUE;
 
+  int boxPositionY = screenHeight / 2 - 40;
+  int boxPositionX = screenWidth / 2;
+  int scrollSpeed = 50;
+  int offset = 40;
+
   SetTargetFPS(30);
 
   while (!WindowShouldClose()) {
@@ -35,6 +40,9 @@ int main(void) {
     }
 
     ball2Position = GetMousePosition();
+
+    boxPositionY -= (int)(GetMouseWheelMove() * scrollSpeed);
+    boxPositionX = GetMouseX() - offset;
 
     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
       ball2Color = MAROON;
@@ -59,7 +67,14 @@ int main(void) {
     DrawText("Move the mouse the move the blue ball.", 10, 30, 20, WHITE);
 
     DrawCircleV(ballPosition, 50, ballColor);
+    DrawRectangle(boxPositionX, boxPositionY, 80, 80, MAGENTA);
     DrawCircleV(ball2Position, 30, ball2Color);
+
+    DrawText("Use scroll wheel to move the box up and down.", 10, 50, 20,
+             WHITE);
+
+    DrawText(TextFormat("boxPositionY: %03i", boxPositionY), 10, 400, 20,
+             WHITE);
 
     EndDrawing();
   }
